@@ -2,6 +2,7 @@ $(document).ready(function () {
     init();
     renderNotation();
     updateNotation();
+    renderMidi();
 });
 
 function init(){
@@ -18,4 +19,10 @@ function renderNotation(){
 function updateNotation(){
     $("#abc").on('input', renderNotation);
     $("#upper").focus()
+    renderMidi();
+}
+
+function renderMidi(){
+    window.ABCJS.midi.soundfontUrl = "/path/to/soundfonts/";
+    window.ABCJS.renderMidi("midi", $("#abc").val(), {}, { generateInline: true }, {});
 }
