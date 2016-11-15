@@ -23,6 +23,5 @@ function updateNotation(){
 }
 
 function renderMidi(){
-    window.ABCJS.midi.soundfontUrl = "/path/to/soundfonts/";
-    window.ABCJS.renderMidi("midi", $("#abc").val(), {}, { generateInline: true }, {});
+    window.ABCJS.renderMidi("abc-midi", $("#abc").val(), {}, { generateInline: true }, {});
 }

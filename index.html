@@ -10,6 +10,8 @@
 </head>
 <body>
 
+<!-- NOTATION -->
+
 <!-- Staff to draw-->
 <div class="row">
     <div class="col-md-12 center-block text-center">
@@ -17,24 +19,37 @@
     </div>
 </div>
 
+<!-- Where to display warnings -->
 <div class="row">
     <div class="col-md-12">
         <div id="warnings"></div>
     </div>
 </div>
 
-<!-- Input to Staff -->
+<!-- ABC Editor -->
 <div class="row">
-    <div class="col-md-12 center-block text-center" id="upper">
-        <textarea class="form-control center-block" rows="5" name="abc" id="abc"></textarea>
+    <div class="col-lg-12 center-block text-center" id="upper">
+        <textarea title="abc" class="form-control center-block" rows="5" name="abc" id="abc"></textarea>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-12">
-        <audio id="midi"></audio>
+<!-- Midi Renderer -->
+<div class="row text-center">
+    <div class="col-lg-12 center-block text-center">
+        <audio id="midi-audio" controls src=""></audio>
+        <div id="abc-midi" class="center-block text-center"></div>
     </div>
 </div>
+
+
+
+<!-- MIDI -->
+<div class="row">
+    <div class="col-md-12">
+        <div id="midi"></div>
+    </div>
+</div>
+
 
 
 
@@ -43,7 +58,9 @@
 <script src="js/jquery-3.1.1.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
 <script src="js/abcjs_editor.min.js" type="text/javascript"></script>
+<script src="js/MIDI.min.js" type="text/javascript"></script>
 <script src="js/abcstaff.js" type="text/javascript"></script>
+<script src="js/midi.js" type="text/javascript"></script>
 
 </body>
 </html>
