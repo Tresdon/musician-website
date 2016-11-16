@@ -1,64 +1,66 @@
 $(document).ready(function () {
     init();
-    renderNotation();
-    updateNotation();
     renderMidi();
+    $("#abc-midi a").html('Download MIDI for "Etude of Platte"')
+
 });
 
 function init(){
-    abc_editor = new ABCJS.Editor("abc", { paper_id: "staff",
+    abc_editor = new ABCJS.Editor("abc", {
+        paper_id: "staff",
         generate_midi: true,
         midi_id:"abc-midi",
-        warnings_id:"warnings" });
-
-    MIDI.loadPlugin({
-        instrument: "acoustic_grand_piano"
+        warnings_id:"warnings",
+        width: "100%",
+        editable: true
     });
-}
+    $("#abc").on('input', renderMidi);
 
-function renderNotation(){
-    ABCJS.renderAbc('abc', $("#abc").val());
-    renderMidi()
-}
-
-function updateNotation(){
-    $("#abc").on('input', renderNotation);
 }
 
 function renderMidi(){
-    var noteEvents = [];
-    ["C4", "E4", "G4"].forEach(function(note) {
-        Array.prototype.push.apply(noteEvents, MidiEvent.createNote(note));
-    });
-
-// Create a track that contains the events to play the notes above
-    var track = new MidiTrack({ events: noteEvents });
-
-// Creates an object that contains the final MIDI track in base64 and some
-// useful methods.
-    var song  = MidiWriter({ tracks: [track] });
-
-// Alert the base64 representation of the MIDI file
-    alert(song.b64);
-
-// Play the song
-    song.play();
-    /*
-    window.ABCJS.renderMidi("abc-midi", $("#abc").val(), {}, { generateInline: true }, {});
-    midiData = $("#abc-midi a").attr('href').substring(16);
-    //var audio = $("#midi-audio");
-    //MIDI.Player.loadFile(midiData, MIDI.Player.start, progress, failed);
-    console.log(midiData)*/
+    window.ABCJS.renderMidi("abc-midi", $("#abc").val(), {}, {
+        generateDownload: true,
+        downloadLabel: "Download MIDI: ",
+        generateInline: true
+    }, {});
 }
 
-function failed(){
-    console.log("FAILED")
+function etudeOfPlatte(){
+    text =
+"X:1 \n\
+T: Etude of Platte \n\
+C: Tresdon Jones \n\
+M: 4/4 \n\
+abce | abce | bcde | fbcd| bcde | \n\
+B3a1 | CD3 | Ba3 | B4| bcde | \n\
+a2c2 | a1c3 | bcde | b2cd| bed2 || \n";
+    $("#abc").text(text);
+    $("#abc").trigger('focus');
 }
 
-function progress(){
-    console.log("Progress")
+function whyWontItSnow(){
+    text =
+"X:1 \n\
+T: Why Won't it Snow \n\
+C: Tresdon Jones \n\
+M: 4/4 \n\
+d2a2 | bcd2 | AB3 | fbcd| ABCD | \n\
+A4 | a1c3 | b4 | b2cd| bed2 || \n\
+W: Why won't it snow it's november. \n\
+W: Come on snow, come on please";
+    $("#abc").text(text)
+    $("#abc").trigger('focus');
+
 }
 
-function onSuccess(){
-    MIDI.Player.start();
+function appleTree(){
+    text =
+"X:1 \n\
+T: Apple Tree \n\
+C: Tresdon Jones \n\
+M: 4/4 \n\
+d3a1 | B4 | ABCD | b2a2| \n";
+    $("#abc").text(text)
+    $("#abc").trigger('focus');
 }
